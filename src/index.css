@@ -1,0 +1,389 @@
+@import 'tailwindcss';
+
+/* Tema claro/escuro controlado pela classe .dark no <html> */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ------------------------------------------------------------------ *
+ * Paleta Material 3 — valores crus.
+ * Trocar a cor da marca = trocar aqui (um lugar so).
+ * ------------------------------------------------------------------ */
+:root {
+  --m3-primary: #17341d;
+  --m3-on-primary: #ffffff;
+  --m3-primary-container: #2d4b32;
+  --m3-on-primary-container: #98ba9a;
+  --m3-primary-fixed: #c8ecc9;
+  --m3-primary-fixed-dim: #adcfae;
+  --m3-on-primary-fixed: #03210c;
+  --m3-on-primary-fixed-variant: #2f4d34;
+  --m3-inverse-primary: #adcfae;
+  --m3-surface-tint: #47664b;
+
+  --m3-secondary: #805533;
+  --m3-on-secondary: #ffffff;
+  --m3-secondary-container: #fdc39a;
+  --m3-on-secondary-container: #794e2e;
+  --m3-secondary-fixed: #ffdcc5;
+  --m3-secondary-fixed-dim: #f4bb92;
+  --m3-on-secondary-fixed: #301400;
+  --m3-on-secondary-fixed-variant: #653d1e;
+
+  --m3-tertiary: #4b2400;
+  --m3-on-tertiary: #ffffff;
+  --m3-tertiary-container: #6c3600;
+  --m3-on-tertiary-container: #f19f5e;
+  --m3-tertiary-fixed: #ffdcc4;
+  --m3-tertiary-fixed-dim: #ffb780;
+  --m3-on-tertiary-fixed: #2f1400;
+  --m3-on-tertiary-fixed-variant: #6f3800;
+
+  --m3-error: #ba1a1a;
+  --m3-on-error: #ffffff;
+  --m3-error-container: #ffdad6;
+  --m3-on-error-container: #93000a;
+
+  --m3-background: #f9f9fc;
+  --m3-on-background: #1a1c1e;
+  --m3-surface: #f9f9fc;
+  --m3-on-surface: #1a1c1e;
+  --m3-surface-variant: #e2e2e5;
+  --m3-on-surface-variant: #424842;
+  --m3-surface-bright: #f9f9fc;
+  --m3-surface-dim: #dadadc;
+  --m3-surface-container-lowest: #ffffff;
+  --m3-surface-container-low: #f3f3f6;
+  --m3-surface-container: #eeeef0;
+  --m3-surface-container-high: #e8e8ea;
+  --m3-surface-container-highest: #e2e2e5;
+
+  --m3-outline: #737971;
+  --m3-outline-variant: #c2c8bf;
+  --m3-inverse-surface: #2f3133;
+  --m3-inverse-on-surface: #f0f0f3;
+
+  --m3-hairline: #e2e4e2;
+  --m3-card-shadow: 45 75 50;
+
+  /* Superficie de marca (faixas e cartoes verdes grandes). No claro e o
+     proprio primary; no escuro vira verde profundo — primary la e verde
+     claro e uma faixa inteira nele ofuscaria a pagina. */
+  --m3-brand: #17341d;
+  --m3-on-brand: #ffffff;
+}
+
+.dark {
+  --m3-primary: #adcfae;
+  --m3-on-primary: #1a3620;
+  --m3-primary-container: #2f4d34;
+  --m3-on-primary-container: #c8ecc9;
+  --m3-inverse-primary: #47664b;
+  --m3-surface-tint: #adcfae;
+
+  --m3-secondary: #f4bb92;
+  --m3-on-secondary: #4a2808;
+  --m3-secondary-container: #653d1e;
+  --m3-on-secondary-container: #ffdcc5;
+
+  --m3-tertiary: #ffb780;
+  --m3-on-tertiary: #4b2400;
+  --m3-tertiary-container: #6c3600;
+  --m3-on-tertiary-container: #ffdcc4;
+
+  --m3-error: #ffb4ab;
+  --m3-on-error: #690005;
+  --m3-error-container: #93000a;
+  --m3-on-error-container: #ffdad6;
+
+  --m3-background: #111412;
+  --m3-on-background: #e2e2e5;
+  --m3-surface: #111412;
+  --m3-on-surface: #e2e2e5;
+  --m3-surface-variant: #424842;
+  --m3-on-surface-variant: #c2c8bf;
+  --m3-surface-bright: #373a37;
+  --m3-surface-dim: #111412;
+  --m3-surface-container-lowest: #0c0f0d;
+  --m3-surface-container-low: #191c1a;
+  --m3-surface-container: #1d201e;
+  --m3-surface-container-high: #272b28;
+  --m3-surface-container-highest: #323633;
+
+  --m3-outline: #8c938a;
+  --m3-outline-variant: #424842;
+  --m3-inverse-surface: #e2e2e5;
+  --m3-inverse-on-surface: #2f3133;
+
+  --m3-hairline: #2f3330;
+  --m3-card-shadow: 0 0 0;
+
+  --m3-brand: #2f4d34;
+  --m3-on-brand: #c8ecc9;
+}
+
+/* ------------------------------------------------------------------ *
+ * Tokens de cor (inline = resolvem no elemento, entao .dark funciona)
+ * ------------------------------------------------------------------ */
+@theme inline {
+  --color-primary: var(--m3-primary);
+  --color-on-primary: var(--m3-on-primary);
+  --color-primary-container: var(--m3-primary-container);
+  --color-on-primary-container: var(--m3-on-primary-container);
+  --color-primary-fixed: var(--m3-primary-fixed);
+  --color-primary-fixed-dim: var(--m3-primary-fixed-dim);
+  --color-on-primary-fixed: var(--m3-on-primary-fixed);
+  --color-on-primary-fixed-variant: var(--m3-on-primary-fixed-variant);
+  --color-inverse-primary: var(--m3-inverse-primary);
+  --color-surface-tint: var(--m3-surface-tint);
+
+  --color-secondary: var(--m3-secondary);
+  --color-on-secondary: var(--m3-on-secondary);
+  --color-secondary-container: var(--m3-secondary-container);
+  --color-on-secondary-container: var(--m3-on-secondary-container);
+  --color-secondary-fixed: var(--m3-secondary-fixed);
+  --color-secondary-fixed-dim: var(--m3-secondary-fixed-dim);
+  --color-on-secondary-fixed: var(--m3-on-secondary-fixed);
+  --color-on-secondary-fixed-variant: var(--m3-on-secondary-fixed-variant);
+
+  --color-tertiary: var(--m3-tertiary);
+  --color-on-tertiary: var(--m3-on-tertiary);
+  --color-tertiary-container: var(--m3-tertiary-container);
+  --color-on-tertiary-container: var(--m3-on-tertiary-container);
+  --color-tertiary-fixed: var(--m3-tertiary-fixed);
+  --color-tertiary-fixed-dim: var(--m3-tertiary-fixed-dim);
+  --color-on-tertiary-fixed: var(--m3-on-tertiary-fixed);
+  --color-on-tertiary-fixed-variant: var(--m3-on-tertiary-fixed-variant);
+
+  --color-error: var(--m3-error);
+  --color-on-error: var(--m3-on-error);
+  --color-error-container: var(--m3-error-container);
+  --color-on-error-container: var(--m3-on-error-container);
+
+  --color-background: var(--m3-background);
+  --color-on-background: var(--m3-on-background);
+  --color-surface: var(--m3-surface);
+  --color-on-surface: var(--m3-on-surface);
+  --color-surface-variant: var(--m3-surface-variant);
+  --color-on-surface-variant: var(--m3-on-surface-variant);
+  --color-surface-bright: var(--m3-surface-bright);
+  --color-surface-dim: var(--m3-surface-dim);
+  --color-surface-container-lowest: var(--m3-surface-container-lowest);
+  --color-surface-container-low: var(--m3-surface-container-low);
+  --color-surface-container: var(--m3-surface-container);
+  --color-surface-container-high: var(--m3-surface-container-high);
+  --color-surface-container-highest: var(--m3-surface-container-highest);
+
+  --color-outline: var(--m3-outline);
+  --color-outline-variant: var(--m3-outline-variant);
+  --color-inverse-surface: var(--m3-inverse-surface);
+  --color-inverse-on-surface: var(--m3-inverse-on-surface);
+  --color-hairline: var(--m3-hairline);
+  --color-brand: var(--m3-brand);
+  --color-on-brand: var(--m3-on-brand);
+}
+
+/* ------------------------------------------------------------------ *
+ * Tipografia, espacamento e animacoes
+ * ------------------------------------------------------------------ */
+@theme {
+  --font-body-sm: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-body-md: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-body-lg: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-label-caps: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-display-lg: 'Hanken Grotesk', 'Inter', ui-sans-serif, sans-serif;
+  --font-headline-lg: 'Hanken Grotesk', 'Inter', ui-sans-serif, sans-serif;
+  --font-headline-md: 'Hanken Grotesk', 'Inter', ui-sans-serif, sans-serif;
+  --font-headline-sm: 'Hanken Grotesk', 'Inter', ui-sans-serif, sans-serif;
+  --font-data-metric: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+
+  --text-body-sm: 14px;
+  --text-body-sm--line-height: 20px;
+  --text-body-sm--font-weight: 400;
+  --text-body-md: 16px;
+  --text-body-md--line-height: 24px;
+  --text-body-md--font-weight: 400;
+  --text-body-lg: 18px;
+  --text-body-lg--line-height: 28px;
+  --text-body-lg--font-weight: 400;
+
+  --text-label-caps: 12px;
+  --text-label-caps--line-height: 16px;
+  --text-label-caps--letter-spacing: 0.05em;
+  --text-label-caps--font-weight: 700;
+
+  --text-headline-sm: 20px;
+  --text-headline-sm--line-height: 28px;
+  --text-headline-sm--font-weight: 600;
+  --text-headline-md: 24px;
+  --text-headline-md--line-height: 32px;
+  --text-headline-md--font-weight: 600;
+  --text-headline-lg: 32px;
+  --text-headline-lg--line-height: 40px;
+  --text-headline-lg--font-weight: 600;
+
+  --text-display-lg: 40px;
+  --text-display-lg--line-height: 48px;
+  --text-display-lg--letter-spacing: -0.02em;
+  --text-display-lg--font-weight: 700;
+  /* extensoes para escala de landing page */
+  --text-display-xl: 56px;
+  --text-display-xl--line-height: 60px;
+  --text-display-xl--letter-spacing: -0.025em;
+  --text-display-xl--font-weight: 700;
+  --text-display-2xl: 72px;
+  --text-display-2xl--line-height: 76px;
+  --text-display-2xl--letter-spacing: -0.03em;
+  --text-display-2xl--font-weight: 700;
+
+  --text-data-metric: 22px;
+  --text-data-metric--line-height: 24px;
+  --text-data-metric--letter-spacing: -0.01em;
+  --text-data-metric--font-weight: 600;
+  --text-data-metric-lg: 40px;
+  --text-data-metric-lg--line-height: 44px;
+  --text-data-metric-lg--letter-spacing: -0.02em;
+  --text-data-metric-lg--font-weight: 600;
+
+  --spacing-unit: 4px;
+  --spacing-container-padding: 20px;
+  --spacing-inline-gap: 12px;
+  --spacing-section-margin: 32px;
+  --spacing-stack-gap: 16px;
+
+  --animate-marquee: marquee 40s linear infinite;
+  --animate-float-slow: float-slow 9s ease-in-out infinite;
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes float-slow {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ * Base
+ * ------------------------------------------------------------------ */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 88px;
+    color-scheme: light;
+  }
+
+  html.dark {
+    color-scheme: dark;
+  }
+
+  body {
+    background-color: var(--m3-surface);
+    color: var(--m3-on-surface);
+    font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background-color: var(--m3-primary-fixed-dim);
+    color: var(--m3-on-primary-fixed);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--m3-primary);
+    outline-offset: 2px;
+  }
+
+  .material-symbols-outlined {
+    font-variation-settings:
+      'FILL' 0,
+      'wght' 400,
+      'GRAD' 0,
+      'opsz' 24;
+    user-select: none;
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ * Utilitarios do design system
+ * ------------------------------------------------------------------ */
+/*
+ * tonal-card fica na camada de componentes (e nao em @utility) de proposito:
+ * assim qualquer utilitario vence — `border-primary-container` troca a cor da
+ * borda e `shadow-2xl` nao encolhe no hover.
+ */
+@layer components {
+  .tonal-card {
+    border: 1px solid var(--m3-hairline);
+    transition:
+      box-shadow 0.3s ease,
+      transform 0.3s ease;
+  }
+
+  .tonal-card:hover {
+    box-shadow: 0 12px 24px -10px rgb(var(--m3-card-shadow) / 0.12);
+  }
+}
+
+@utility glass-nav {
+  backdrop-filter: blur(15px) saturate(150%);
+  -webkit-backdrop-filter: blur(15px) saturate(150%);
+}
+
+@utility grid-paper {
+  background-image: linear-gradient(
+      to right,
+      color-mix(in oklab, var(--m3-outline-variant) 45%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in oklab, var(--m3-outline-variant) 45%, transparent) 1px,
+      transparent 1px
+    );
+  background-size: 56px 56px;
+}
+
+/* Revelacao ao rolar — ver hook useReveal */
+@layer components {
+  .reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition:
+      opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .animate-marquee,
+  .animate-float-slow,
+  .animate-pulse {
+    animation: none !important;
+  }
+}
