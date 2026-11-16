@@ -1,43 +1,19 @@
 /**
  * Navbar — cabeçalho fixo da landing page.
  *
- * DADOS PLACEHOLDER: o nome da marca vem de `BRAND.name` (ainda provisório) e os
- * links vêm de `NAV_LINKS`. O link "Entrar" aponta para a seção de contato até que
- * exista uma aplicação com autenticação real — substituir pela URL do app quando houver.
- * O monograma é um desenho geométrico sem letras, justamente por o nome não estar definido.
+ * A marca é a logo oficial (`<Logo />`, versões clara/escura). Os links vêm de
+ * `NAV_LINKS`. O link "Entrar" aponta para a seção de contato até que a URL do
+ * painel web esteja definida — substituir quando houver.
  */
 
 import { useEffect, useState } from 'react'
 import { Button } from '@/components/ui/Button'
 import { Container } from '@/components/ui/Container'
 import { Icon } from '@/components/ui/Icon'
+import { Logo } from '@/components/ui/Logo'
 import { useTheme } from '@/hooks/useTheme'
 import { cn } from '@/lib/cn'
 import { BRAND, CTA, NAV_LINKS } from '@/config/brand'
-
-/** Monograma geométrico: folha/escudo estilizado com nervura e ramificações. */
-function Monogram() {
-  return (
-    <span className="flex size-8 shrink-0 items-center justify-center rounded-sm bg-primary text-on-primary">
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth={1.8}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        className="size-5"
-        aria-hidden="true"
-        focusable="false"
-      >
-        <path d="M12 3.2c4.4 2.6 6.8 6.1 6.8 10.1a6.8 6.8 0 0 1-13.6 0c0-4 2.4-7.5 6.8-10.1Z" />
-        <path d="M12 8.6v11" />
-        <path d="m12 13.4 3.1-2.4" />
-        <path d="m12 16.6-3.1-2.4" />
-      </svg>
-    </span>
-  )
-}
 
 export function Navbar() {
   const { theme, toggleTheme } = useTheme()
@@ -97,12 +73,9 @@ export function Navbar() {
           <a
             href="#"
             aria-label={`${BRAND.name} — voltar ao topo da página`}
-            className="flex min-w-0 items-center gap-inline-gap rounded-sm"
+            className="flex min-w-0 shrink items-center rounded-sm"
           >
-            <Monogram />
-            <span className="truncate font-headline-sm text-headline-sm tracking-tight text-primary sm:font-headline-md sm:text-headline-md">
-              {BRAND.name}
-            </span>
+            <Logo className="h-8 sm:h-9 lg:h-10" />
           </a>
 
           {/* Navegação principal */}

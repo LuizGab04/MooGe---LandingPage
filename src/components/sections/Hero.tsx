@@ -2,18 +2,18 @@
  * ============================================================
  *  HERO — primeira dobra da landing page
  * ============================================================
- *  ATENÇÃO: todos os números, lotes, métricas e rótulos do
- *  painel ilustrativo abaixo são PLACEHOLDERS de demonstração.
- *  Substituir por dados reais (ou por uma captura do produto)
- *  antes de publicar. Nenhum nome de empresa é escrito à mão
- *  aqui: quando for preciso citá-lo, use {BRAND.name}.
+ *  O visual é a print REAL da tela inicial do painel MooGe
+ *  (src/assets/screens/painel-inicio.png) e o ícone real do app.
+ *  Os cartões flutuantes descrevem recursos, não exibem dados.
  */
 
 import { Button } from '@/components/ui/Button'
 import { Container } from '@/components/ui/Container'
 import { Icon } from '@/components/ui/Icon'
 import { Reveal } from '@/components/ui/Reveal'
-import { CTA } from '@/config/brand'
+import { ScreenFrame } from '@/components/ui/ScreenFrame'
+import { BRAND, CTA } from '@/config/brand'
+import { BRAND_IMAGES, SCREENS } from '@/config/assets'
 
 /**
  * Máscara que dissolve a grade técnica nas bordas da seção.
@@ -23,26 +23,6 @@ import { CTA } from '@/config/brand'
 const MASCARA_GRADE =
   'radial-gradient(120% 90% at 50% 0%, black 0%, color-mix(in oklab, black 55%, transparent) 45%, transparent 78%)'
 
-/**
- * Barras do mini-gráfico (altura em % do trilho) — dados ilustrativos.
- * A curva é decrescente de propósito: o rótulo ao lado anuncia queda
- * de incidência, então subir as barras contradiria o número.
- */
-const BARRAS = [
-  { mes: 'Abr', altura: 88, destaque: false },
-  { mes: 'Mai', altura: 80, destaque: false },
-  { mes: 'Jun', altura: 72, destaque: false },
-  { mes: 'Jul', altura: 66, destaque: false },
-  { mes: 'Ago', altura: 61, destaque: true },
-  { mes: 'Set', altura: 58, destaque: true },
-] as const
-
-/** Indicadores do painel flutuante — dados ilustrativos. */
-const KPIS = [
-  { rotulo: 'Aderência ao protocolo', valor: '98,2%' },
-  { rotulo: 'Protocolos ativos', valor: '24' },
-] as const
-
 /** Garantias exibidas logo abaixo dos CTAs. */
 const GARANTIAS = [
   'Demonstração de 30 min, sem compromisso',
@@ -50,22 +30,22 @@ const GARANTIAS = [
   'Funciona offline no curral',
 ] as const
 
-/** Cartões satélite que flutuam ao redor do painel — dados ilustrativos. */
+/** Cartões que flutuam ao redor da print — recursos reais, sem números. */
 const SATELITES = [
   {
-    id: 'doses',
-    icone: 'vaccines',
-    valor: '42 doses',
-    rotulo: 'aplicadas hoje',
-    posicao: 'lg:-top-6 lg:-right-6',
+    id: 'carencia',
+    icone: 'block',
+    valor: 'Carência controlada',
+    rotulo: 'venda e abate bloqueados',
+    posicao: 'lg:-top-7 lg:-right-5',
     atraso: '0s',
   },
   {
-    id: 'gmd',
-    icone: 'trending_up',
-    valor: 'GMD 1,24 kg/dia',
-    rotulo: 'média do lote',
-    posicao: 'lg:-bottom-12 lg:-left-8',
+    id: 'offline',
+    icone: 'cloud_sync',
+    valor: 'Fila offline',
+    rotulo: 'sincroniza quando o sinal volta',
+    posicao: 'lg:top-1/2 lg:-right-10',
     atraso: '1.8s',
   },
 ] as const
@@ -97,7 +77,7 @@ export function Hero() {
                   <span className="absolute inline-flex h-full w-full animate-pulse rounded-full bg-primary motion-reduce:animate-none" />
                   <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
                 </span>
-                Novo · Rastreabilidade individual por brinco
+                Novo · App de campo com balança, bastão e modo offline
               </span>
             </Reveal>
 
@@ -130,9 +110,9 @@ export function Hero() {
 
             <Reveal delay={140}>
               <p className="mt-8 max-w-xl font-body-lg text-body-lg text-on-surface-variant text-pretty">
-                Protocolos sanitários, inventário farmacológico e rastreabilidade individual em um só
-                painel. Cada aplicação registrada no curral atualiza carência de medicamento, GMD e
-                custo por arroba do lote — com ou sem sinal de internet.
+                O {BRAND.name} junta o painel web da fazenda e um app de campo que conversa com a
+                balança e o bastão leitor de chip. Pesagens, vacinas e tratamentos entram direto do
+                curral — e, sem internet, ficam numa fila no aparelho até o sinal voltar.
               </p>
             </Reveal>
 
@@ -170,81 +150,37 @@ export function Hero() {
 
           {/* ---------------- Coluna visual ---------------- */}
           <Reveal delay={180} className="relative lg:col-span-6">
-            {/* Painel do produto (ilustrativo) */}
-            <div
-              role="img"
-              aria-label="Prévia do painel de gestão de rebanho com indicadores ilustrativos do lote 2026-Norte."
-              className="relative rounded-xl border border-hairline bg-surface-container-lowest p-5 shadow-2xl transition-transform duration-500 lg:-rotate-1 lg:hover:rotate-0"
+            <ScreenFrame
+              title="Início"
+              className="transition-transform duration-500 lg:-rotate-1 lg:hover:rotate-0"
             >
-              <div aria-hidden="true">
-                {/* Barra superior falsa */}
-                <div className="flex items-center gap-3 border-b border-hairline pb-4">
-                  <div className="flex items-center gap-1.5">
-                    <span className="h-2.5 w-2.5 rounded-full bg-error" />
-                    <span className="h-2.5 w-2.5 rounded-full bg-tertiary-fixed-dim" />
-                    <span className="h-2.5 w-2.5 rounded-full bg-primary-fixed-dim" />
-                  </div>
-                  <div className="flex min-w-0 flex-1 items-center gap-2 rounded-sm bg-surface-container px-3 py-1.5">
-                    <Icon name="qr_code_scanner" size={16} className="text-on-surface-variant" />
-                    <span className="truncate font-body-sm text-body-sm text-on-surface-variant">
-                      Lote #2026-Norte
-                    </span>
-                  </div>
-                  <Icon name="dashboard" size={18} className="text-on-surface-variant" />
-                </div>
+              <img
+                src={SCREENS.inicio.src}
+                width={SCREENS.inicio.width}
+                height={SCREENS.inicio.height}
+                alt={SCREENS.inicio.alt}
+                fetchPriority="high"
+                className="block h-auto w-full"
+              />
+            </ScreenFrame>
 
-                {/* KPIs */}
-                <div className="mt-5 grid grid-cols-2 gap-3">
-                  {KPIS.map((kpi) => (
-                    <div
-                      key={kpi.rotulo}
-                      className="rounded-lg border border-hairline bg-surface-container-low p-4"
-                    >
-                      <p className="font-label-caps text-label-caps text-on-surface-variant uppercase">
-                        {kpi.rotulo}
-                      </p>
-                      <p className="mt-2 font-data-metric text-data-metric text-primary">
-                        {kpi.valor}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Mini-gráfico de barras */}
-                <div className="mt-3 rounded-lg border border-hairline bg-surface-container-low p-4">
-                  <div className="flex items-baseline justify-between gap-3">
-                    <p className="font-label-caps text-label-caps text-on-surface-variant uppercase">
-                      Incidência respiratória
-                    </p>
-                    <span className="font-data-metric text-data-metric text-primary">−34%</span>
-                  </div>
-                  <div className="mt-4 flex h-24 items-end gap-2">
-                    {BARRAS.map((barra) => (
-                      <div
-                        key={barra.mes}
-                        style={{ height: `${barra.altura}%` }}
-                        className={
-                          barra.destaque
-                            ? 'flex-1 rounded-t-sm bg-primary'
-                            : 'flex-1 rounded-t-sm bg-primary/25'
-                        }
-                      />
-                    ))}
-                  </div>
-                  <div className="mt-2 flex justify-between font-body-sm text-body-sm text-on-surface-variant">
-                    <span>{BARRAS[0].mes}</span>
-                    <span>{BARRAS[BARRAS.length - 1].mes}</span>
-                  </div>
-                </div>
-
-                {/* Alerta de protocolo atrasado */}
-                <div className="mt-3 flex items-center gap-3 rounded-lg border border-hairline bg-error-container px-4 py-3">
-                  <span className="h-2 w-2 shrink-0 rounded-full bg-error" />
-                  <p className="font-body-sm text-body-sm text-on-error-container">
-                    Controle de carrapatos · 2 dias de atraso
-                  </p>
-                </div>
-              </div>
+            {/* Ícone do app — encosta no canto da print */}
+            <div className="absolute -bottom-6 -left-3 flex items-center gap-3 rounded-xl border border-hairline bg-surface-container-lowest p-2 pr-4 shadow-xl sm:-left-6 lg:-bottom-10 lg:-left-8">
+              <img
+                src={BRAND_IMAGES.appIcon}
+                width={56}
+                height={56}
+                alt=""
+                className="size-12 rounded-lg sm:size-14"
+              />
+              <span className="flex flex-col">
+                <span className="font-label-caps text-label-caps text-on-surface-variant uppercase">
+                  App de campo
+                </span>
+                <span className="font-body-md text-body-md font-semibold text-primary">
+                  Balança · bastão · offline
+                </span>
+              </span>
             </div>
 
             {/* Cartões satélite — escondidos no mobile para não quebrar o layout */}
@@ -259,7 +195,7 @@ export function Hero() {
                   <Icon name={satelite.icone} size={18} />
                 </span>
                 <span className="flex flex-col">
-                  <span className="font-data-metric text-data-metric text-primary">
+                  <span className="font-body-md text-body-md font-semibold text-primary">
                     {satelite.valor}
                   </span>
                   <span className="font-body-sm text-body-sm text-on-surface-variant">

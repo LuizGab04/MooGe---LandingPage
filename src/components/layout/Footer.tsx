@@ -1,8 +1,8 @@
 /**
  * Footer — rodapé institucional da landing page.
  *
- * DADOS PLACEHOLDER: nome, e-mail, telefone, endereço e redes sociais vêm de
- * `BRAND` (ainda provisórios). Os links das colunas "Empresa" e da barra legal
+ * E-mail e WhatsApp vêm de `BRAND`. DADOS PLACEHOLDER: as redes sociais
+ * (ainda provisórias). Os links das colunas "Empresa" e da barra legal
  * apontam para "#" até que as páginas existam — trocar pelas rotas reais.
  * O formulário de newsletter não tem backend: ver o TODO em `handleSubmit`.
  */
@@ -12,31 +12,8 @@ import type { FormEvent } from 'react'
 import { Button } from '@/components/ui/Button'
 import { Container } from '@/components/ui/Container'
 import { Icon } from '@/components/ui/Icon'
+import { Logo } from '@/components/ui/Logo'
 import { BRAND, NAV_LINKS } from '@/config/brand'
-
-/** Mesmo monograma da navbar: folha/escudo com nervura e ramificações. */
-function Monogram() {
-  return (
-    <span className="flex size-8 shrink-0 items-center justify-center rounded-sm bg-primary text-on-primary">
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth={1.8}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        className="size-5"
-        aria-hidden="true"
-        focusable="false"
-      >
-        <path d="M12 3.2c4.4 2.6 6.8 6.1 6.8 10.1a6.8 6.8 0 0 1-13.6 0c0-4 2.4-7.5 6.8-10.1Z" />
-        <path d="M12 8.6v11" />
-        <path d="m12 13.4 3.1-2.4" />
-        <path d="m12 16.6-3.1-2.4" />
-      </svg>
-    </span>
-  )
-}
 
 /* Logos de marca não existem no Material Symbols — desenhos genéricos em currentColor. */
 function LinkedInGlyph() {
@@ -143,12 +120,7 @@ export function Footer() {
         <div className="grid gap-10 md:grid-cols-12">
           {/* Marca */}
           <div className="md:col-span-4">
-            <div className="flex items-center gap-inline-gap">
-              <Monogram />
-              <span className="font-headline-md text-headline-md tracking-tight text-primary">
-                {BRAND.name}
-              </span>
-            </div>
+            <Logo variant="full" className="h-14" />
 
             <p className="mt-stack-gap max-w-xs font-body-sm text-body-sm text-on-surface-variant">
               {BRAND.description}
@@ -219,16 +191,14 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href={BRAND.phoneHref}
+                  href={BRAND.whatsapp}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex items-center gap-inline-gap py-1.5 font-body-sm text-body-sm text-on-surface-variant transition-colors hover:text-primary"
                 >
-                  <Icon name="call" size={18} className="shrink-0 text-primary" />
-                  {BRAND.phone}
+                  <Icon name="chat" size={18} className="shrink-0 text-primary" />
+                  {BRAND.phone} · WhatsApp
                 </a>
-              </li>
-              <li className="flex items-start gap-inline-gap py-1.5 font-body-sm text-body-sm text-on-surface-variant">
-                <Icon name="location_on" size={18} className="shrink-0 text-primary" />
-                {BRAND.address}
               </li>
             </ul>
 
