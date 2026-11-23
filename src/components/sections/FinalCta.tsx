@@ -2,9 +2,9 @@
  * ============================================================
  *  SEÇÃO: Chamada final + contato
  * ============================================================
- *  ATENÇÃO: e-mail, telefone, endereço e prazos de resposta vêm
- *  de `@/config/brand` e são PLACEHOLDERS ILUSTRATIVOS.
- *  Substituir pelos dados reais da empresa antes de publicar.
+ *  E-mail e WhatsApp vêm de `@/config/brand`. O fundo do cartão é
+ *  a foto de pasto (src/assets/photos/pasto.jpg) sob um véu verde
+ *  da marca, para o texto manter contraste nos dois temas.
  */
 
 import { BRAND, CTA } from '@/config/brand'
@@ -12,6 +12,7 @@ import { Button } from '@/components/ui/Button'
 import { Container } from '@/components/ui/Container'
 import { Icon } from '@/components/ui/Icon'
 import { Reveal } from '@/components/ui/Reveal'
+import { PHOTOS } from '@/config/assets'
 
 type ContactRow = {
   /** Ícone do Material Symbols exibido à esquerda da linha. */
@@ -26,8 +27,7 @@ type ContactRow = {
 
 const CONTACTS: ContactRow[] = [
   { icon: 'mail', label: 'E-mail', value: BRAND.email, href: `mailto:${BRAND.email}` },
-  { icon: 'call', label: 'Telefone', value: BRAND.phone, href: BRAND.phoneHref },
-  { icon: 'place', label: 'Endereço', value: BRAND.address },
+  { icon: 'chat', label: 'WhatsApp', value: BRAND.phone, href: BRAND.whatsapp },
 ]
 
 /**
@@ -51,10 +51,19 @@ export function FinalCta() {
       <Container>
         <Reveal>
           <div className="relative overflow-hidden rounded-xl bg-brand p-8 text-on-brand md:p-14">
-            {/* Decoração: textura de grade + halo radial */}
+            {/* Fundo: foto do pasto + véu verde da marca (mais denso à esquerda, onde fica o texto) */}
+            <img
+              src={PHOTOS.pasto.src}
+              width={PHOTOS.pasto.width}
+              height={PHOTOS.pasto.height}
+              alt=""
+              aria-hidden="true"
+              loading="lazy"
+              className="pointer-events-none absolute inset-0 h-full w-full object-cover object-[30%_60%]"
+            />
             <div
               aria-hidden="true"
-              className="pointer-events-none absolute inset-0 grid-paper opacity-5"
+              className="pointer-events-none absolute inset-0 bg-linear-to-b from-brand/95 via-brand/85 to-brand/70 lg:bg-linear-to-r lg:from-brand/95 lg:via-brand/80 lg:to-brand/45"
             />
             <div
               aria-hidden="true"
@@ -133,6 +142,9 @@ export function FinalCta() {
                           <a
                             className="inline-flex min-h-11 items-center font-body-md text-body-md text-on-brand wrap-anywhere hover:underline"
                             href={contact.href}
+                            {...(contact.href.startsWith('http')
+                              ? { target: '_blank', rel: 'noopener noreferrer' }
+                              : {})}
                           >
                             {contact.value}
                           </a>

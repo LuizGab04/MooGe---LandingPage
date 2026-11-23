@@ -1,4 +1,7 @@
-# Landing page — agrotecnologia / pecuária de precisão
+# MooGe — landing page
+
+Site do **MooGe** (painel web de gestão de rebanho + app de campo conectado à balança e ao
+bastão leitor, com fila offline).
 
 Landing page em **React 19 + TypeScript + Tailwind CSS v4**, construída sobre o design system
 Material 3 do mock de referência (paleta verde `#17341d` + terracota `#805533`,
@@ -19,21 +22,36 @@ Abre em `http://localhost:5173`.
 | `npm run preview` | serve o build de produção localmente     |
 | `npm run lint`    | oxlint                                   |
 
-## Trocar o nome da empresa
+## Marca, contato e textos
 
-O nome ainda é um placeholder (`NOME_PROVISORIO`) e **não está escrito à mão em nenhum
-componente**. Para definir o nome real, edite apenas:
+Nome (`MooGe`), tagline, descrição, e-mail (`mooge.tecnologia@gmail.com`), WhatsApp e redes sociais ficam em:
 
 ```
 src/config/brand.ts
 ```
 
-Lá ficam nome, razão social, tagline, descrição, e-mail, telefone, WhatsApp, endereço e redes
-sociais. Todos os componentes leem desse arquivo. O `<title>` e as metatags ficam em
-`index.html` (esses sim precisam ser atualizados à mão, porque são HTML estático).
+Todos os componentes leem desse arquivo. O `<title>` e as metatags ficam em `index.html`
+(HTML estático, atualizado à mão). **Ainda são placeholders:** razão social, domínio e redes sociais.
 
-O monograma do logo é um SVG inline sem letras — repetido na `Navbar` e no `Footer` — então
-funciona com qualquer nome. O favicon fica em `public/favicon.svg`.
+## Imagens (logo, ícone do app e prints)
+
+Os arquivos originais ficam na raiz do projeto (`Logo.png`, `Icone mooge logo2.png`,
+`Painel dos animais.png`, `Dashboards e avisos.png`, `Barra lateral Completa.png`). As versões
+usadas pelo site foram recortadas e otimizadas e são importadas por `src/config/assets.ts`:
+
+| Arquivo                               | Uso                                                       |
+| ------------------------------------- | --------------------------------------------------------- |
+| `src/assets/brand/logo-{light,dark}`  | logo com frase, fundo transparente — rodapé               |
+| `src/assets/brand/wordmark-{light,dark}` | logo sem a frase — navbar                            |
+| `src/assets/brand/app-icon.png`       | ícone do app — hero e seção "App de campo"                |
+| `src/assets/brand/mark.png`           | só o pino — barra de título das prints                    |
+| `src/assets/screens/*.png`            | prints reais do painel — hero e seção "Plataforma"        |
+| `src/assets/photos/pasto.jpg`         | foto de pasto — fundo da chamada final (contato)          |
+| `public/favicon.png`, `apple-touch-icon.png`, `og-image.png` | favicon e prévia de compartilhamento |
+
+A versão `dark` da logo troca o verde por creme para ler bem no tema escuro; o componente
+`<Logo />` alterna entre as duas pela classe `.dark`. Para atualizar uma print, substitua o PNG em
+`src/assets/screens` mantendo o nome (e ajuste `width`/`height` em `assets.ts` se mudar a proporção).
 
 ## Design system
 
@@ -79,12 +97,14 @@ src/
 ├─ App.tsx                    ordem das seções da página
 ├─ index.css                  design tokens + utilitários
 ├─ config/brand.ts            ← nome, contato, links de navegação e CTAs
+├─ config/assets.ts           ← logo, ícone do app e prints do sistema
+├─ assets/brand, assets/screens
 ├─ lib/cn.ts                  merge de classes (clsx + tailwind-merge)
 ├─ hooks/useTheme.ts
 └─ components/
-   ├─ ui/                     Button, Icon, Container, Reveal, SectionHeading
+   ├─ ui/                     Button, Icon, Container, Reveal, SectionHeading, Logo, ScreenFrame
    ├─ layout/                 Navbar, Footer
-   └─ sections/               Hero, LogoCloud, Metrics, ProductShowcase, Features,
+   └─ sections/               Hero, LogoCloud, Metrics, ProductShowcase, AppCampo, Features,
                               HowItWorks, Testimonials, Pricing, Faq, FinalCta
 ```
 
@@ -93,14 +113,9 @@ encapsulado em `<Icon name="monitor_heart" />`.
 
 ## Conteúdo é placeholder
 
-Números, depoimentos, nomes de fazendas, logotipos de clientes e preços são **ilustrativos** e
+As telas do produto (hero e "Plataforma") são **prints reais**. O app de celular ainda não tem
+prints: a seção "App de campo" usa um diagrama do fluxo. Já números, depoimentos, nomes de fazendas, logotipos de clientes e preços são **ilustrativos** e
 estão marcados com comentário no topo de cada arquivo. Substitua antes de publicar.
 
 O formulário de newsletter no rodapé não tem backend — há um `TODO` no arquivo indicando onde
 plugar a API.
-
-## Imagens
-
-A página não depende de nenhuma imagem externa: todo o visual (mockup do painel, gráficos,
-logos, avatares, texturas) é feito com CSS e SVG inline. Isso mantém o carregamento rápido e
-evita links quebrados.

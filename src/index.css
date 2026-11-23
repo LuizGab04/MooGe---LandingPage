@@ -69,6 +69,11 @@
      claro e uma faixa inteira nele ofuscaria a pagina. */
   --m3-brand: #17341d;
   --m3-on-brand: #ffffff;
+
+  /* Moldura das prints do app (capturadas no tema escuro do sistema):
+     fixa nos dois temas para a print nao parecer colada num fundo claro. */
+  --m3-screen: #121412;
+  --m3-screen-bar: #1a1d1a;
 }
 
 .dark {
@@ -179,6 +184,8 @@
   --color-hairline: var(--m3-hairline);
   --color-brand: var(--m3-brand);
   --color-on-brand: var(--m3-on-brand);
+  --color-screen: var(--m3-screen);
+  --color-screen-bar: var(--m3-screen-bar);
 }
 
 /* ------------------------------------------------------------------ *

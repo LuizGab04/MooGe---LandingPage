@@ -4,6 +4,7 @@ import { Hero } from '@/components/sections/Hero'
 import { LogoCloud } from '@/components/sections/LogoCloud'
 import { Metrics } from '@/components/sections/Metrics'
 import { ProductShowcase } from '@/components/sections/ProductShowcase'
+import { AppCampo } from '@/components/sections/AppCampo'
 import { Features } from '@/components/sections/Features'
 import { HowItWorks } from '@/components/sections/HowItWorks'
 import { Testimonials } from '@/components/sections/Testimonials'
@@ -28,6 +29,7 @@ export default function App() {
         <LogoCloud />
         <Metrics />
         <ProductShowcase />
+        <AppCampo />
         <Features />
         <HowItWorks />
         <Testimonials />
